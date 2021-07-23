@@ -53,7 +53,9 @@ public class AdService {
 	
 		public ResponseEntity<Ad> updateAd(int id, Ad ad){
 			
-			if(!adRepository.existsById(ad.getID())) {
+			if(!adRepository.existsById(id))
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			
 				Ad temp = adRepository.findById(ad.getID()).get();
 				temp.setName(ad.getName());
 				temp.setDescription(ad.getDescription());
@@ -66,11 +68,11 @@ public class AdService {
 				
 				adRepository.save(temp);
 				return new ResponseEntity<>(HttpStatus.OK);
-			}
 			
 			
 			
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+			
+			
 		 }
 		
 	

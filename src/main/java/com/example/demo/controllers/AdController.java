@@ -16,12 +16,17 @@ import com.example.demo.models.Ad;
 import com.example.demo.service.AdService;
 
 
+
 @RestController
 public class AdController {
 
 	@Autowired
 	private AdService adService;
 	
+	@GetMapping("/")
+	public Collection<Ad> getAll1(){
+		return adService.getAllAds();
+	}
 	//get all
 	@GetMapping("/ad")
 	public Collection<Ad> getAll(){

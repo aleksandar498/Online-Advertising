@@ -36,22 +36,23 @@ public class AdTypeController {
 			
 	}
 	//get by name
-	@GetMapping("/adtype/{name}")
-	public Collection<AdType> getByName(@PathVariable ("name") String name){
-		return adTypeService.getAdByName(name);
-	}
+	/*
+	 * @GetMapping("/adtype/{name}") public Collection<AdType>
+	 * getByName(@PathVariable ("name") String name){ return
+	 * adTypeService.getAdByName(name); }
+	 */
 	//post
-	@PostMapping("/adType")
+	@PostMapping("/adtype")
 	public ResponseEntity<AdType> post(@RequestBody AdType adType){		
 		return adTypeService.createAdType(adType);
 	}
 	//delete
-	@DeleteMapping("/adType/{id}")
+	@DeleteMapping("/adtype/{id}")
 	public ResponseEntity<AdType> delete(@PathVariable ("id") Integer id) {
 		return adTypeService.deleteAdType(id);
 	}
 	//put
-	@PutMapping("/adType/{id}")
+	@PutMapping("/adtype/{id}")
 	public ResponseEntity<AdType> update(@PathVariable int id, @RequestBody AdType adType){
 		
 		return adTypeService.updateAdType(id, adType);

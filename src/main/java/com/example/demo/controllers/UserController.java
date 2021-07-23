@@ -35,11 +35,14 @@ public class UserController {
 		return userService.getUserByID(id);
 			
 	}
-	//get by name
-	@GetMapping("/user/{username}")
-	public Collection<User> getByName(@PathVariable ("username") String username){
-		return userService.getUserByName(username);
-	}
+
+	/*
+	 * //get by name
+	 * 
+	 * @GetMapping("/user/{username}") public Collection<User>
+	 * getByName(@PathVariable ("username") String username){ return
+	 * userService.getUserByName(username); }
+	 */
 	//post
 	@PostMapping("/user")
 	public ResponseEntity<User> post(@RequestBody User user){		

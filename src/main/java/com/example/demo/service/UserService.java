@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.models.AdType;
 import com.example.demo.models.User;
 import com.example.demo.repository.UserRepository;
 
@@ -28,8 +29,8 @@ public class UserService {
 		
 		//getByNaziv
 	
-		public Collection<User> getUserByName(String username){
-			return userRepository.findByUsernameContainingIgnoreCase(username);
+		public User getUserByName(String username){
+			return (User) userRepository.findByUsernameContainingIgnoreCase(username);
 		}
 		
 		//delete
@@ -52,20 +53,17 @@ public class UserService {
 		//update
 	
 		public ResponseEntity<User> updateUser(int id, User user){
-			
-			if(!userRepository.existsById(user.getUserID())) {
-				User temp = userRepository.findById(user.getUserID()).get();
-				temp.setUsername(user.getUsername());
-				temp.setPassword(user.getPassword());
-				temp.setPhoneNumber(user.getPhoneNumber());
-				temp.setRegistrationDate(user.getRegistrationDate());
-				userRepository.save(temp);
-				return new ResponseEntity<>(HttpStatus.OK);
-			}
-			
+			if(!userRepository.existsById(id))
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			User temp = userRepository.findById(user.getUserID()).get();
+			temp.setUsername(user.getUsername());
+			temp.setPassword(user.getPassword());
+			temp.setPhoneNumber(user.getPhoneNumber());
+			temp.setRegistrationDate(user.getRegistrationDate());
+			userRepository.save(temp);
+			return new ResponseEntity<>(HttpStatus.OK);
 			
 			
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		 }
 		
 	

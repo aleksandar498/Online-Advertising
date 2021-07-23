@@ -20,6 +20,10 @@ import lombok.Data;
 @Table(name="ad")
 public class Ad {
 	
+	public Ad() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ID;

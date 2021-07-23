@@ -28,11 +28,10 @@ public class AdTypeService {
 		}
 		
 		//getByNaziv
-	
-		public Collection<AdType> getAdByName(String name){
-			return adTypeRepository.findByTypeContainingIgnoreCase(name);
-		}
-		
+	/*
+	 * public Collection<AdType> getAdByName(String name){ return
+	 * adTypeRepository.findByTypeContainingIgnoreCase(name); }
+	 */
 		//delete
 	
 		public ResponseEntity<AdType> deleteAdType(Integer id) {
@@ -52,18 +51,16 @@ public class AdTypeService {
 		}
 		//update
 	
-		public ResponseEntity<AdType> updateAdType(int id, AdType adType){
+		public ResponseEntity<AdType> updateAdType(Integer id, AdType adType){
 			
-			if(!adTypeRepository.existsById(adType.getAdTypeID())) {
-				AdType temp = adTypeRepository.findById(adType.getAdTypeID()).get();
-				temp.setType(adType.getType());
-				adTypeRepository.save(temp);
-				return new ResponseEntity<>(HttpStatus.OK);
-			}
-			
-			
-			
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		
+		
+			if(!adTypeRepository.existsById(id))
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			AdType temp = adTypeRepository.findById(id).get();
+			temp.setType(adType.getType());
+			adTypeRepository.save(temp);
+			return new ResponseEntity<>(HttpStatus.OK);
 		 }
 		
 	
