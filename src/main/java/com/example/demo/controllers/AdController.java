@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import com.example.demo.models.Ad;
 import com.example.demo.service.AdService;
 
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class AdController {
 
@@ -32,7 +33,7 @@ public class AdController {
 	public Collection<Ad> getAll(){
 		return adService.getAllAds();
 	}
-	
+
 	//get one
 	@GetMapping("/ad/{id}")
 	public Ad getOne(@PathVariable ("id") Integer id) {
@@ -40,10 +41,10 @@ public class AdController {
 			
 	}
 	//get by name
-	@GetMapping("/ad/{name}")
-	public Collection<Ad> getByName(@PathVariable ("name") String name){
-		return adService.getAdByName(name);
-	}
+//	@GetMapping("/ad/{name}")
+//	public Collection<Ad> getByName(@PathVariable ("name") String name){
+//		return adService.getAdByName(name);
+//	}
 	//post
 	@PostMapping("/ad")
 	public ResponseEntity<Ad> post(@RequestBody Ad adType){		
